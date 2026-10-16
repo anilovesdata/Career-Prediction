@@ -3,21 +3,15 @@ import pandas as pd
 import os
 import joblib
 
-# ============================================================
-# PAGE CONFIG
-# ============================================================
 st.set_page_config(
-    page_title="TechPath — Career Recommendation",
+    page_title="TechPath : A Career Recommendation App",
     page_icon="🧭",
     layout="centered",
 )
 
-# ============================================================
-# DESIGN TOKENS
-# ------------------------------------------------------------
 # Subject: a tool that maps someone's skills and interests onto
-# a tech career path. The visual language leans on that idea —
-# a route, waypoints, a destination — rather than a generic
+# a tech career path. The visual language leans on that idea 
+# a route, waypoints, a destination  rather than a generic
 # "AI dashboard" look.
 #
 # Color
@@ -34,7 +28,7 @@ st.set_page_config(
 #   Display : Space Grotesk  (headings, the route labels)
 #   Body    : Inter          (form labels, copy)
 #   Utility : JetBrains Mono (numbers, ratings, scores)
-# ============================================================
+
 
 CUSTOM_CSS = """
 <style>
@@ -255,9 +249,6 @@ label, .stMarkdown p {
 
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
-# ============================================================
-# SECTION METADATA — drives both the route map and the form
-# ============================================================
 SECTIONS = [
     {"key": "profile", "label": "Profile", "eyebrow": "WAYPOINT 01",
      "title": "Who you are", "hint": "The basics — used only to contextualize your results."},
@@ -325,9 +316,6 @@ def section_header(sec):
     )
 
 
-# ============================================================
-# MODEL LOADING
-# ============================================================
 def load_model():
     model_path = "model.pkl"
     if os.path.exists(model_path):
@@ -337,9 +325,6 @@ def load_model():
 
 model = load_model()
 
-# ============================================================
-# HERO
-# ============================================================
 st.markdown('<div class="hero-eyebrow">TECHPATH</div>', unsafe_allow_html=True)
 st.markdown('<div class="hero-title">Find the tech career your skills already point to</div>', unsafe_allow_html=True)
 st.markdown(
@@ -357,9 +342,7 @@ if model is None:
         "app, then refresh — the form below will still let you explore the inputs."
     )
 
-# ============================================================
-# FORM
-# ============================================================
+
 with st.form("career_prediction_form"):
 
     # --- Waypoint 1: Profile ---
@@ -473,9 +456,6 @@ with st.form("career_prediction_form"):
     submit_button = st.form_submit_button("Find my career path →")
 
 
-# ============================================================
-# PREDICTION
-# ============================================================
 if submit_button:
     user_inputs = {
         "Age": age,

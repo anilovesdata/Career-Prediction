@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import os
 import joblib
+import sys
+
+import sklearn.compose._column_transformer as _ct
+if not hasattr(_ct, "_RemainderColsList"):
+    class _RemainderColsList:
+        pass
+    _ct._RemainderColsList = _RemainderColsList
 
 st.set_page_config(
     page_title="TechPath : A Career Recommendation App",
